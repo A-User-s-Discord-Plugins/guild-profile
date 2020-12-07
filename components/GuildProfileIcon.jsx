@@ -3,8 +3,8 @@
  * Licensed under the Open Software License version 3.0
  */
 
-const { React, getModule } = require('powercord/webpack');
-const { icon } = getModule(['iconContainer', 'icon'], false);
+const { React, getModule } = require('@vizality/webpack');
+const { icon } = getModule('iconContainer', 'icon', false);
 
 module.exports = React.memo((props) => (
   <svg

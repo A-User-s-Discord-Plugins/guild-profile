@@ -3,7 +3,7 @@
  * Licensed under the Open Software License version 3.0
  */
 
-const { Flux, FluxDispatcher } = require('powercord/webpack');
+const { Flux, FluxDispatcher } = require('@vizality/webpack');
 const { FluxActions } = require('../constants');
 
 const memberCounts = [];

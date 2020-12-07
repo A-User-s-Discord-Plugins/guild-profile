@@ -9,7 +9,7 @@ const {
   getModule,
   i18n: { Messages },
   getModuleByDisplayName,
-} = require('powercord/webpack');
+} = require('@vizality/webpack');
 const {
   Text,
   Flex,
@@ -17,20 +17,18 @@ const {
   Clickable,
   Tooltip,
   Spinner,
-} = require('powercord/components');
-const { close } = require('powercord/modal');
+} = require('@vizality/components');
+const { close } = require('@vizality/modal');
 const { clipboard } = require('electron');
-const AsyncComponent = require('powercord/components/AsyncComponent');
+const AsyncComponent = require('@vizality/components/AsyncComponent');
 
-const { AdvancedScrollerThin } = getModule(['AdvancedScrollerThin'], false);
+const { AdvancedScrollerThin } = getModule('AdvancedScrollerThin', false);
 const FormSection = AsyncComponent.from(getModuleByDisplayName('FormSection'));
 const GuildBadge = AsyncComponent.from(getModuleByDisplayName('GuildBadge'));
 const Anchor = AsyncComponent.from(getModuleByDisplayName('Anchor'));
 const Mention = AsyncComponent.from(getModuleByDisplayName('Anchor'));
 
-const InviteButton = AsyncComponent.from(
-  getModuleByDisplayName('InviteButton')
-);
+const InviteButton = AsyncComponent.from(getModuleByDisplayName('InviteButton'));
 
 getModuleByDisplayName('InviteButton', true, true).then((Button) => {
   ['Data'].forEach((prop) => (InviteButton[prop] = Button[prop]));
@@ -38,15 +36,12 @@ getModuleByDisplayName('InviteButton', true, true).then((Button) => {
 
 const DiscordTag = AsyncComponent.from(getModuleByDisplayName('DiscordTag'));
 
-const { GuildIcon } = getModule(['GuildIcon'], false);
-const { Avatar } = getModule(['Avatar'], false);
+const { GuildIcon } = getModule('GuildIcon', false);
+const { Avatar } = getModule('Avatar', false);
 
-const UserProfileModalActionCreators = getModule(
-  ['fetchProfile', 'open'],
-  false
-);
+const UserProfileModalActionCreators = getModule('fetchProfile', 'open',false);
 
-const ContextMenu = getModule(['closeContextMenu'], false);
+const ContextMenu = getModule('closeContextMenu', false);
 
 const GuildProfileSections = {
   GUILD_INFO: 'GUILD_INFO',
@@ -75,7 +70,7 @@ class Section extends React.PureComponent {
     super(props);
 
     this.classes = {
-      marginBottom8: getModule(['marginBottom8'], false).marginBottom8,
+      marginBottom8: getModule('marginBottom8', false).marginBottom8,
     };
   }
 
@@ -101,7 +96,7 @@ class RelationshipRow extends React.PureComponent {
     super(props);
 
     this.classes = {
-      ...getModule(['listRow'], false),
+      ...getModule('listRow', false),
     };
 
     this.state = {};
@@ -137,10 +132,10 @@ class Relationships extends React.PureComponent {
     super(props);
 
     this.classes = {
-      empty: getModule(['body', 'empty'], false).empty,
-      nelly: getModule(['flexWrapper', 'image'], false).image,
-      ...getModule(['emptyIcon'], false),
-      ...getModule(['fade', 'thin'], false),
+      empty: getModule('body', 'empty', false).empty,
+      nelly: getModule('flexWrapper', 'image', false).image,
+      ...getModule('emptyIcon', false),
+      ...getModule('fade', 'thin', false),
     };
   }
 
@@ -191,19 +186,19 @@ class GuildInfo extends React.PureComponent {
     super(props);
 
     this.classes = {
-      empty: getModule(['body', 'empty'], false).empty,
-      nelly: getModule(['flexWrapper', 'image'], false).image,
-      ...getModule(['emptyIcon'], false),
+      empty: getModule('body', 'empty', false).empty,
+      nelly: getModule('flexWrapper', 'image', false).image,
+      ...getModule('emptyIcon', false),
     };
 
     this.state = {
-      streamerMode: getModule(['hidePersonalInformation'], false)
+      streamerMode: getModule('hidePersonalInformation', false)
         .hidePersonalInformation,
     };
   }
 
   async componentDidMount() {
-    const { getUser } = getModule(['getUser'], false);
+    const { getUser } = getModule('getUser', false);
     const { ownerId } = this.props.guild;
 
     this.setState({ owner: await getUser(ownerId) });
@@ -214,8 +209,8 @@ class GuildInfo extends React.PureComponent {
   }
 
   render() {
-    const moment = getModule(['momentProperties'], false);
-    const { extractTimestamp } = getModule(['extractTimestamp'], false);
+    const moment = getModule('momentProperties', false);
+    const { extractTimestamp } = getModule('extractTimestamp', false);
     const { guild } = this.props;
     const {
       vanityURLCode,
@@ -291,13 +286,13 @@ class GuildProfileModal extends React.PureComponent {
     super(props);
 
     this.classes = {
-      ...getModule(['guildDetail'], false),
-      ...getModule(['tabBarContainer'], false),
-      guildIconContainer: getModule(['guildIconContainer'], false)
+      ...getModule('guildDetail', false),
+      ...getModule('tabBarContainer', false),
+      guildIconContainer: getModule('guildIconContainer', false)
         .guildIconContainer,
-      avatarWrapperNormal: getModule(['avatarWrapperNormal'], false)
+      avatarWrapperNormal: getModule('avatarWrapperNormal', false)
         .avatarWrapperNormal,
-      ...getModule(['profileBadge'], false),
+      ...getModule('profileBadge', false),
     };
 
     _.bindAll(this, ['handleSectionSelect']);
@@ -469,13 +464,13 @@ class GuildProfileModal extends React.PureComponent {
 
 module.exports = Flux.connectStoresAsync(
   [
-    getModule(['getRelationships']),
-    getModule(['getCurrentUser']),
-    getModule(['isMember']),
+    getModule('getRelationships'),
+    getModule('getCurrentUser'),
+    getModule('isMember'),
   ],
   ([relationshipsStore, userStore, membersStore], compProps) => {
     // Its safe to assume if the module aboves were found that this one is also loaded
-    const userFetcher = getModule(['getUser'], false);
+    const userFetcher = getModule('getUser', false);
     const relationships = relationshipsStore.getRelationships();
     const props = {
       friends: [],

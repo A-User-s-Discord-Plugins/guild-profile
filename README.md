@@ -4,7 +4,7 @@ Open a guild profile modal that gives you various information about the guild.
 
 ## Preview
 
-![Preview Image](https://slime-rancher.is-inside.me/Cj5RTYBd.png)
+![Preview Image](https://auser.owns-a-furry.club/6f5a7aA.png)
 
 ## Installation
 

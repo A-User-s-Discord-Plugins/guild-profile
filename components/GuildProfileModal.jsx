@@ -20,7 +20,7 @@ const {
 } = require('@vizality/components');
 const { close } = require('@vizality/modal');
 const { clipboard } = require('electron');
-const AsyncComponent = require('@vizality/components/AsyncComponent');
+const { AsyncComponent } = require('@vizality/components');
 
 const { AdvancedScrollerThin } = getModule('AdvancedScrollerThin', false);
 const FormSection = AsyncComponent.from(getModuleByDisplayName('FormSection'));

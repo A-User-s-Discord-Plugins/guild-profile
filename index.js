@@ -7,7 +7,7 @@ const { Plugin } = require('@vizality/entities');
 const { patch, unpatch } = require('@vizality/patcher');
 const { React, getModule, FluxDispatcher, i18n: { Messages } } = require('@vizality/webpack');
 const { open } = require('@vizality/modal');
-const { findInReactTree } = require('@vizality/util')
+const { react:{ findInReactTree } } = require('@vizality/util')
 const i18n = require('./i18n');
 
 const GuildProfileModal = require('./components/GuildProfileModal');

@@ -17,7 +17,7 @@ const memberCountsStore = require('./memberCountsStore/store');
 const memberCountsActions = require('./memberCountsStore/actions');
 
 module.exports = class GuildProfile extends Plugin {
-  async onStart() {
+  async start() {
     this.log('Icons provided by https://iconify.design/');
     vizality.api.i18n.injectAllStrings(i18n);
     this.injectStyles('styles.scss');
@@ -123,7 +123,7 @@ module.exports = class GuildProfile extends Plugin {
     Menu.default.displayName = 'Menu';
   }
 
-  onStop() {
+  stop() {
     unpatch('guild-profile-context-menu');
     unpatch('guild-profile-menu');
     FluxDispatcher.unsubscribe('GUILD_MEMBER_LIST_UPDATE', this.handleMemberListUpdate);
